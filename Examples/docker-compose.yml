@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  webapplication.efcore:
+    image: ${DOCKER_REGISTRY-}webapplicationefcore
+    build:
+      context: .
+      dockerfile: SQL/WebApplication.EFCore/Dockerfile
+    networks:
+      - internal
+     
+
+      
+  postgres:
+    container_name: 'postgres'
+    restart: always
+    image: postgres
+    build:
+      context: ./
+      dockerfile: postgres.dockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - /usr/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_MULTIPLE_DATABASES=postgres
+    networks:
+      - internal
+
+      
+networks:
+  internal:
+    driver: bridge
+
