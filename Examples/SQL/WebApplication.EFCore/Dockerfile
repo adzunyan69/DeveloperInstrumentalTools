@@ -7,9 +7,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["SQL/WebApplication.EFCore/WebApplication.EFCore.csproj", "SQL/WebApplication.EFCore/"]
-COPY ["SQL/Database.EFCore/Database.EFCore.csproj", "SQL/Database.EFCore/"]
-RUN dotnet restore "SQL/WebApplication.EFCore/WebApplication.EFCore.csproj"
+COPY ["WebApplication.EFCore/WebApplication.EFCore.csproj", "WebApplication.EFCore/"]
+COPY ["Database.EFCore/Database.EFCore.csproj", "Database.EFCore/"]
+RUN dotnet restore "WebApplication.EFCore/WebApplication.EFCore.csproj"
 COPY . .
 WORKDIR "/src/SQL/WebApplication.EFCore"
 RUN dotnet build "WebApplication.EFCore.csproj" -c Release -o /app/build
