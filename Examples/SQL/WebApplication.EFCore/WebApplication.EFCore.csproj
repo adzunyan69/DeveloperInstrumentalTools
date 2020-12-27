@@ -13,10 +13,10 @@
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
       <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Database.EFCore\Database.EFCore.csproj" />
+    <ItemGroup> 
+        <PackageReference Include="Database.EFCore" Version="1.0.0" /> 
     </ItemGroup>
+
 
 
 </Project>
