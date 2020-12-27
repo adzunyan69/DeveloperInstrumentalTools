@@ -34,7 +34,8 @@ namespace WebApplication.EFCore
             services.AddScoped<IMoviesDataAccess, MoviesDataAccess>();
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddDbContext<ExampleContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("ExampleDbContext")));
+                options.UseNpgsql("Host=postgres;Port=5432;Database=postgres;User ID=postgres;Password=root;")
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
