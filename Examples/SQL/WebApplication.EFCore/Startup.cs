@@ -31,7 +31,7 @@ namespace WebApplication.EFCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IWeatherDataAccess, WeatherDataAccess>();
+            services.AddScoped<IMoviesDataAccess, MoviesDataAccess>();
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddDbContext<ExampleContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("ExampleDbContext")));
@@ -52,6 +52,13 @@ namespace WebApplication.EFCore
             //app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ExampleContext>();
+                context.Database.Migrate();
+            }
         }
     }
 }
