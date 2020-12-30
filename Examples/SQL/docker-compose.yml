@@ -14,10 +14,10 @@ services:
     volumes:
       - /usr/postgres/data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=root
+      - POSTGRES_PASSWORD=postgres
       - POSTGRES_MULTIPLE_DATABASES=exampledb
     networks:
-      - internal
+      - razornetwork
 
   
   app:
@@ -28,8 +28,19 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - internal
+      - razornetwork
+
+  razor:
+    container_name: 'movies.razor'
+    build:
+      context: ../
+      dockerfile: razor.dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - razornetwork
 
 networks:
-  internal:
+  razornetwork:
     driver: bridge
+    external: true

@@ -1,29 +1,23 @@
-@model IEnumerable<WeatherForecast>
+@model IEnumerable<MoviesEntity>
 
 @{
-    ViewBag.Title = "Weather forecast";
+    ViewBag.Title = "Movies";
     Layout = "_Layout";
 }
 
-<h2>Weather forecast</h2>
+<h2>Movies</h2>
 
 <div class="container">
   <div class="row">
     <div class="col">
-      Timestamp
-    </div>
-    <div class="col">
-      Temperature
+      Movie
     </div>
   </div>
   @foreach (var forecast in this.Model)
   {
     <div class="row">
       <div class="col">
-        @Html.ActionLink(forecast.TimeStamp.ToString(), "Details", forecast)
-      </div>
-      <div class="col">
-        @forecast.TemperatureCText
+        @Html.ActionLink(forecast.Name, "Details", forecast)
       </div>
     </div>
   }

@@ -1,32 +1,32 @@
-@model WeatherForecast
+@model MoviesEntity
 
 @{
-    ViewBag.Title = $"Weather forecast for {this.Model.TimeStamp}";
+    ViewBag.Title = $"About {this.Model.Name}";
     Layout = "_Layout";
 }
 
-<h3>Forecast for @this.Model.TimeStamp</h3>
+<h3>About @this.Model.Name</h3>
 <div class="container">
     <div class="row">
         <div class="col">
-            Temperature in C
+            #
         </div>
         <div class="col">
-            Temperature in F
+            Name
         </div>
         <div class="col">
-            Summary
+            Year
         </div>
     </div>
     <div class="row">
         <div class="col">
-            @this.Model.TemperatureCText
+            @this.Model.MoviesId.ToString()
         </div>
         <div class="col">
-            @this.Model.TemperatureFText
+            @this.Model.Name
         </div>
         <div class="col">
-            @this.Model.Summary
+            @this.Model.Year.ToString()
         </div>
     </div>
     <div class="row">
